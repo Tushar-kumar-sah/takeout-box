@@ -1,0 +1,701 @@
+/* =========================================================
+   THE TAKEOUT BOX - COMMERCIAL CUSTOMER LOGIN & SIGNUP
+   Compact 100vh Non-Scrollable Production-Grade Layout
+   ========================================================= */
+
+.loginPage {
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  display: flex;
+  background: #0F172A;
+  position: relative;
+  font-family: var(--font-family);
+  overflow: hidden;
+}
+
+/* =========================================================
+   LEFT SHOWCASE: Food packaging photo, Takeout Box branding,
+   curved swoops, and 3 commercial trust badges
+   ========================================================= */
+.leftShowcase {
+  flex: 1.05;
+  height: 100vh;
+  max-height: 100vh;
+  position: relative;
+  background-image: url("/images/login-showcase-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 36px;
+  overflow: hidden;
+  box-shadow: inset -20px 0 40px rgba(0, 0, 0, 0.4);
+}
+
+.showcaseOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(229, 26, 26, 0.28) 0%,
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.8) 0%,
+      rgba(15, 23, 42, 0.45) 50%,
+      rgba(15, 23, 42, 0.92) 100%
+    );
+  z-index: 1;
+}
+
+/* Red Dynamic Wave Shapes */
+.waveSvg {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.topLeftWave {
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  opacity: 0.95;
+}
+
+.rightBoundaryWave {
+  top: 0;
+  right: -2px;
+  width: 110px;
+  height: 100%;
+  opacity: 0.98;
+}
+
+/* Brand Center Header */
+.showcaseCenter {
+  position: relative;
+  z-index: 4;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 0;
+}
+
+.brandLogoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.65));
+}
+
+.brandLogoImage {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  object-fit: contain;
+}
+
+.sloganText {
+  color: #FFFFFF;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  max-width: 320px;
+}
+
+/* Bottom Feature Badges (3 circular highlight items) */
+.showcaseBadges {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  padding-bottom: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px);
+}
+
+.badgeItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.badgeIconRing {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: rgba(229, 26, 26, 0.2);
+  border: 1.5px solid #E51A1A;
+  box-shadow: 0 0 12px rgba(229, 26, 26, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: transform 0.2s ease;
+}
+
+.badgeItem:hover .badgeIconRing {
+  transform: scale(1.06);
+}
+
+.badgeLabel {
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* =========================================================
+   RIGHT FORM SECTION (Non-Scrollable Viewport Fit)
+   ========================================================= */
+.rightPane {
+  flex: 0.95;
+  height: 100vh;
+  max-height: 100vh;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 44px;
+  position: relative;
+  z-index: 5;
+  overflow-y: auto;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+}
+
+.rightPane::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome/Safari */
+}
+
+.topNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.backToStoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+  font-size: 12.5px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.backToStoreBtn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+  border-color: #CBD5E1;
+  transform: translateX(-2px);
+}
+
+.mobileBrandLogo {
+  display: none;
+}
+
+/* Form Central Container */
+.formCard {
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+  padding: 4px 0;
+}
+
+.welcomeEyebrow {
+  color: #64748B;
+  font-size: 11.5px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.formHeadline {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1.18;
+  margin-bottom: 3px;
+  letter-spacing: -0.3px;
+}
+
+.highlightText {
+  color: #E51A1A;
+}
+
+.formDescription {
+  color: #64748B;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   SEGMENTED CONTROL TAB SWITCHER (Sign In / Sign Up)
+   ========================================================= */
+.authTabs {
+  display: flex;
+  background: #F1F5F9;
+  border-radius: 9999px;
+  padding: 3px;
+  margin-bottom: 14px;
+  border: 1px solid #E2E8F0;
+}
+
+.authTabBtn {
+  flex: 1;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.authTabBtnActive {
+  background: #0F172A;
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.18);
+}
+
+/* =========================================================
+   COMPACT FORM GROUPS & 2-COLUMN ROWS
+   ========================================================= */
+.formRow {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.formRow .formGroup {
+  flex: 1;
+  min-width: 0;
+}
+
+.formGroup {
+  margin-bottom: 9px;
+  position: relative;
+}
+
+.formLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #334155;
+  margin-bottom: 3px;
+}
+
+.requiredStar {
+  color: #DC2626;
+  margin-left: 2px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  border-radius: 9px;
+  border: 1.5px solid #E2E8F0;
+  background: #FFFFFF;
+  padding: 0 10px;
+  transition: all 0.18s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.inputContainer:focus-within {
+  border-color: #E51A1A;
+  box-shadow: 0 0 0 2.5px rgba(229, 26, 26, 0.12);
+}
+
+.inputContainer.hasError {
+  border-color: #DC2626;
+  background: #FEF2F2;
+}
+
+.inputIcon {
+  color: #94A3B8;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.formField {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 400;
+  color: #0F172A;
+  width: 100%;
+}
+
+.formField::placeholder {
+  color: #94A3B8;
+  font-size: 12.5px;
+}
+
+.passwordToggleBtn {
+  background: transparent;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  border-radius: 4px;
+}
+
+.passwordToggleBtn:hover {
+  color: #0F172A;
+}
+
+/* Extra row: Remember Me & Forgot Password */
+.formExtraRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+.rememberLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  color: #475569;
+  user-select: none;
+  font-weight: 400;
+}
+
+.forgotPasswordLink {
+  color: #E51A1A;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 12px;
+  transition: color 0.15s ease;
+}
+
+.forgotPasswordLink:hover {
+  text-decoration: underline;
+  color: #B91C1C;
+}
+
+/* Terms Checkbox */
+.termsRow {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  margin-top: 2px;
+  padding: 0 1px;
+}
+
+.termsLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.termsText {
+  font-size: 11.5px;
+  color: #475569;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.termsLink {
+  color: #E51A1A;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.termsLink:hover {
+  color: #B91C1C;
+}
+
+.customCheckbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid #CBD5E1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.checkboxChecked {
+  background: #E51A1A;
+  border-color: #E51A1A;
+  color: #FFFFFF;
+}
+
+/* Error & Alert Messages */
+.errorMessage {
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  border-radius: 7px;
+  color: #DC2626;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.successAlert {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #166534;
+  font-size: 12.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* Primary Action Button */
+.submitBtn {
+  width: 100%;
+  height: 40px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #E51A1A 0%, #C41616 100%);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 3px 12px rgba(229, 26, 26, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+  box-shadow: 0 4px 16px rgba(229, 26, 26, 0.4);
+  transform: translateY(-1px);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* OR Divider */
+.orDivider {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  color: #94A3B8;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.orDivider::before,
+.orDivider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #E2E8F0;
+}
+
+.orText {
+  padding: 0 12px;
+}
+
+/* Google Sign In Button */
+.googleBtn {
+  width: 100%;
+  height: 38px;
+  border-radius: 9999px;
+  border: 1.5px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #1E293B;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: all 0.18s ease;
+  padding: 0 16px;
+}
+
+.googleBtn:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.socialBtnIcon {
+  flex-shrink: 0;
+}
+
+/* Bottom Switch Link */
+.bottomSignUp {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 400;
+}
+
+.switchAuthBtn {
+  background: none;
+  border: none;
+  color: #E51A1A;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 4px;
+  font-size: 12px;
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.switchAuthBtn:hover {
+  color: #B91C1C;
+}
+
+/* Session Notice Banner */
+.sessionNoticeBanner {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-left: 3px solid #F59E0B;
+  border-radius: 7px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #92400E;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.sessionNoticeIcon {
+  color: #D97706;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+
+/* =========================================================
+   RESPONSIVE LAYOUT (Tablets & Mobile)
+   ========================================================= */
+@media (max-width: 1024px) {
+  .leftShowcase {
+    display: none;
+  }
+
+  .rightPane {
+    flex: 1;
+    padding: 24px 20px;
+    height: 100vh;
+  }
+
+  .mobileBrandLogo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .mobileLogoImg {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .formHeadline {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rightPane {
+    padding: 16px 14px;
+    height: 100vh;
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+
+  .topNavigation {
+    margin-bottom: 8px;
+  }
+
+  .formCard {
+    padding: 4px 0;
+    max-width: 100%;
+  }
+
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .formHeadline {
+    font-size: 20px;
+  }
+}

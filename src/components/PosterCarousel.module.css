@@ -1,0 +1,602 @@
+.sectionWrapper {
+  background: #ffffff;
+  padding: 36px 0 42px 0;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Section Header (Upon poster carousel) */
+.header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 32px auto;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #ea580c;
+  background: rgba(234, 88, 12, 0.08);
+  padding: 4px 12px;
+  border-radius: var(--radius-full, 9999px);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px 0;
+  line-height: 1.25;
+}
+
+.subtitle {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* 3-Column Poster Grid */
+.posterGrid {
+  display: grid;
+  grid-template-columns: 320px 1fr 320px;
+  gap: 28px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: Increased Font Sizes & No Logo
+   ========================================================================== */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.brandTagline {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #15803d;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.mainHeading {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.22;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.01em;
+}
+
+.accentText {
+  color: #15803d;
+  text-decoration: underline;
+  text-decoration-color: #86efac;
+  text-underline-offset: 4px;
+}
+
+.subText {
+  font-size: 14px;
+  font-weight: 400;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1e293b;
+}
+
+.checkCircle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  color: #15803d;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.16s ease);
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.exploreLink:hover {
+  color: #166534;
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   CENTER COLUMN: Decreased Height, No Card Background / No Border
+   ========================================================================== */
+.centerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.carouselStage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+/* Outside Nav Arrows */
+.navArrow {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.navArrow:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: var(--brand-red, #e5252a);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+  transform: scale(1.08);
+}
+
+.navArrow:active {
+  transform: scale(0.95);
+}
+
+/* Decreased height from 600px to 480px, width 384px (exact 4:5 ratio) */
+.posterTrack {
+  position: relative;
+  width: 384px;
+  height: 480px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.98);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.slideActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+  z-index: 2;
+}
+
+/* Removed bg color and border - Clean floating poster */
+.posterCard {
+  position: relative;
+  height: 480px;
+  width: 384px;
+  max-width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.posterCard:hover {
+  transform: translateY(-2px);
+}
+
+/* Crisp poster rendering with object-fit: contain so no text is cut */
+.posterImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  border-radius: 14px;
+  filter: drop-shadow(0 10px 24px rgba(15, 23, 42, 0.14));
+}
+
+/* Outside 4 Dots (Below poster) */
+.dotsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+.dot:hover {
+  background: #94a3b8;
+}
+
+.dotActive {
+  width: 26px;
+  border-radius: 9999px;
+  background: #e5252a;
+  box-shadow: 0 0 8px rgba(229, 37, 42, 0.4);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: Increased Font Sizes & Spacing
+   ========================================================================== */
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.sectionOverline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #15803d;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.overlineDash {
+  font-weight: 600;
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.benefitBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.benefitIconBox {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e8f5e9;
+  color: #15803d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.benefitContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefitNumber {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #15803d;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.benefitTitle {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.benefitDesc {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.48;
+}
+
+.shopAllBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #114232;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 11px 22px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.16s ease);
+  box-shadow: 0 2px 8px rgba(17, 66, 50, 0.2);
+}
+
+.shopAllBtn:hover {
+  background: #0b3024;
+  box-shadow: 0 4px 14px rgba(17, 66, 50, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUTS (Desktop -> Tablet -> Mobile)
+   ========================================================================== */
+@media (max-width: 1240px) {
+  .posterGrid {
+    grid-template-columns: 280px 1fr 280px;
+    gap: 20px;
+  }
+  .mainHeading {
+    font-size: 28px;
+  }
+  .subText {
+    font-size: 14px;
+  }
+  .posterTrack, .posterCard {
+    width: 340px;
+    height: 425px;
+  }
+  .benefitTitle {
+    font-size: 15px;
+  }
+  .benefitDesc {
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    margin-bottom: 24px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .posterGrid {
+    grid-template-columns: 230px 1fr 240px;
+    gap: 14px;
+  }
+  .mainHeading {
+    font-size: 23px;
+  }
+  .subText {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .checkItem {
+    font-size: 13px;
+    gap: 8px;
+  }
+  .posterTrack, .posterCard {
+    width: 290px;
+    height: 362px;
+  }
+  .navArrow {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+  }
+  .benefitBlock {
+    gap: 10px;
+  }
+  .benefitIconBox {
+    width: 36px;
+    height: 36px;
+  }
+  .benefitTitle {
+    font-size: 14px;
+  }
+  .benefitDesc {
+    font-size: 12px;
+  }
+  .shopAllBtn {
+    font-size: 13.5px;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sectionWrapper {
+    padding: 24px 0 28px 0;
+  }
+  .header {
+    margin-bottom: 16px;
+  }
+  .title {
+    font-size: 22px;
+  }
+
+  .posterGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* 1. Small intro */
+  .leftColumn {
+    order: 1;
+    align-items: center;
+    text-align: center;
+  }
+
+  .brandTagline {
+    margin-bottom: 6px;
+  }
+
+  .mainHeading {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .subText {
+    font-size: 13.5px;
+    margin-bottom: 12px;
+    max-width: 440px;
+  }
+
+  .checklist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .checkItem {
+    font-size: 13px;
+  }
+
+  .exploreLink {
+    display: none;
+  }
+
+  /* 2. Poster Carousel */
+  .centerColumn {
+    order: 2;
+    width: 100%;
+  }
+
+  .carouselStage {
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .posterTrack, .posterCard {
+    width: min(calc(100vw - 110px), 310px);
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: 400px;
+  }
+
+  .navArrow {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  /* 3. Benefits */
+  .rightColumn {
+    order: 3;
+    align-items: stretch;
+  }
+
+  .sectionOverline {
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .benefitsList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .benefitBlock {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+
+  /* 4. CTA */
+  .shopAllBtn {
+    width: 100%;
+    height: 44px;
+    font-size: 15px;
+  }
+}

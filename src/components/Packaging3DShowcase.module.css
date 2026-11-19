@@ -1,0 +1,576 @@
+.showcaseContainer {
+  position: relative;
+  width: 100%;
+  background-color: #f8fafc;
+}
+
+/* Pinned stage: managed completely by GSAP ScrollTrigger */
+.pinnedStage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f172a;
+}
+
+/* Fixed background image - dimmed for content contrast */
+.backgroundWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+  filter: brightness(0.74) contrast(1.05);
+}
+
+/* Soft dimmed scrim to ensure text & cards pop with crisp readability */
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 40% 50%,
+    rgba(255, 255, 255, 0.93) 0%,
+    rgba(248, 250, 252, 0.86) 45%,
+    rgba(226, 232, 240, 0.68) 100%
+  );
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+}
+
+/* 2-Column Split: [Left Fixed Text: 50%] [Right Scrolling Cards: 50%] */
+.stageContent {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1360px;
+  height: 100%;
+  max-height: 900px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: space-between;
+  gap: 56px;
+}
+
+/* =========================================================
+   LEFT FIXED TEXT COLUMN
+========================================================= */
+.leftContentColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  z-index: 15;
+  max-width: 580px;
+}
+
+.overlineTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #14532d;
+  margin-bottom: 16px;
+}
+
+.overlineLine {
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background: #15803d;
+  border-radius: 9999px;
+  opacity: 0.85;
+}
+
+.mainHeadline {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: #0c1f17;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.highlightTextWrapper {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  color: #14532d;
+}
+
+.brushUnderline {
+  position: absolute;
+  left: -2%;
+  bottom: -9px;
+  width: 104%;
+  height: 12px;
+  pointer-events: none;
+}
+
+.supportingText {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1vw, 0.98rem);
+  line-height: 1.6;
+  color: #334155;
+  margin: 0 0 24px 0;
+  text-align: left;
+  font-weight: 400;
+}
+
+/* Dynamic Active Sector Pill */
+.sectorBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #14532d;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+}
+
+.sectorBadgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.2);
+}
+
+/* Scroll hint */
+.scrollIndicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #475569;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mouseIcon {
+  width: 18px;
+  height: 26px;
+  border: 1.8px solid #475569;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.mouseWheel {
+  width: 2.5px;
+  height: 5px;
+  background: #15803d;
+  border-radius: 2px;
+  animation: mouseWheelAnim 1.6s infinite ease-in-out;
+}
+
+@keyframes mouseWheelAnim {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(7px);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+.scrollChevron {
+  animation: bounceChevron 1.6s infinite ease-in-out;
+  color: #15803d;
+}
+
+@keyframes bounceChevron {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* =========================================================
+   RIGHT SCROLLING CARDS SLOT (Vertical 3D Stacking Card Deck)
+ ========================================================= */
+.rightCardsSlot {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  z-index: 20;
+  perspective: 1200px;
+  perspective-origin: center center;
+}
+
+/* Individual Compact Container Card (Clean, spacious, B2B aesthetic) */
+.compactCard {
+  position: absolute;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 44px -10px rgba(15, 23, 42, 0.16),
+    0 4px 14px -2px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(241, 245, 249, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 24px 26px;
+  cursor: pointer;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+  user-select: none;
+  transition: 
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.compactCard:hover {
+  border-color: #86efac;
+  box-shadow: 
+    0 26px 54px -10px rgba(13, 92, 58, 0.22),
+    0 8px 18px -2px rgba(15, 23, 42, 0.08);
+}
+
+.cardHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cardIconBox {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #14171a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px -2px rgba(20, 23, 26, 0.35);
+  transition: transform 0.22s ease, background-color 0.22s ease;
+}
+
+.compactCard:hover .cardIconBox {
+  background: #0d5c3a;
+  transform: scale(1.06);
+}
+
+.cardStepBadge {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.cardName {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.cardTagline {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e5252a;
+  margin-bottom: 12px;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  line-height: 1.50;
+  color: #475569;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.suppliesLabel {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.supplyTag {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #334155;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 3px 9px;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   COMPLIANCE & TECHNICAL STANDARDS BANNER (Black & Red Colorway)
+========================================================= */
+.sealsContainer {
+  width: 100%;
+  background: #0f172a;
+  padding: 40px 0;
+  border-top: 1px solid #1e293b;
+  position: relative;
+  z-index: 5;
+}
+
+.sealsBanner {
+  background: #14171a;
+  color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #272d36;
+  padding: 26px 36px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.5);
+}
+
+.sealItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.sealIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(229, 37, 42, 0.12);
+  border: 1px solid rgba(229, 37, 42, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5252a;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sealItem:hover .sealIcon {
+  background: #e5252a;
+  border-color: #e5252a;
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 18px -3px rgba(229, 37, 42, 0.4);
+}
+
+.sealTitle {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.sealSubtitle {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+========================================================= */
+
+@media (max-width: 1024px) {
+  .stageContent {
+    gap: 32px;
+    padding: 30px 20px;
+  }
+
+  .mainHeadline {
+    font-size: 2.3rem;
+  }
+
+  .compactCard {
+    padding: 20px 22px;
+  }
+
+  .cardName {
+    font-size: 1.05rem;
+  }
+
+  .sealsBanner {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile Layout - Stacks Headline at top, Card Slot below */
+@media (max-width: 768px) {
+  .pinnedStage {
+    height: 100vh;
+    height: 100dvh;
+    padding: 16px 14px;
+  }
+
+  .stageContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 10px 10px 10px;
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .leftContentColumn {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    flex: initial;
+  }
+
+  .overlineTag {
+    font-size: 0.72rem;
+    margin-bottom: 8px;
+    align-self: center;
+  }
+
+  .mainHeadline {
+    font-size: 1.55rem;
+    line-height: 1.22;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .brushUnderline {
+    bottom: -6px;
+  }
+
+  .supportingText {
+    font-size: 0.82rem;
+    line-height: 1.42;
+    margin-bottom: 12px;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .sectorBadge {
+    margin-bottom: 12px;
+  }
+
+  .scrollIndicator {
+    display: none;
+  }
+
+  /* Right Cards Slot occupies centered space below headline */
+  .rightCardsSlot {
+    height: 290px;
+    width: 100%;
+    max-width: 380px;
+    flex: initial;
+    perspective: 800px;
+  }
+
+  .compactCard {
+    padding: 16px 18px;
+    border-radius: 16px;
+  }
+
+  .cardIconBox {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cardName {
+    font-size: 0.95rem;
+  }
+
+  .cardTagline {
+    margin-bottom: 8px;
+  }
+
+  .cardDesc {
+    font-size: 0.76rem;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .suppliesLabel {
+    font-size: 0.62rem;
+    margin-bottom: 4px;
+  }
+
+  .supplyTag {
+    font-size: 0.65rem;
+    padding: 2px 7px;
+  }
+
+  .sealsBanner {
+    grid-template-columns: 1fr 1fr;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+}

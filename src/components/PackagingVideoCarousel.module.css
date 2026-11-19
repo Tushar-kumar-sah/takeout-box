@@ -1,0 +1,381 @@
+/* ==========================================================================
+   PACKAGING VIDEO REELS CAROUSEL
+   Vertical side-by-side video cards with hover-to-play interaction
+   ========================================================================== */
+
+.section {
+  position: relative;
+  padding: 64px 0 72px 0;
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 50%, #F8FAFC 100%);
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+
+/* Header Area */
+.headerWrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.headerLeft {
+  max-width: 680px;
+}
+
+.kickerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  background: rgba(229, 26, 26, 0.08);
+  border: 1px solid rgba(229, 26, 26, 0.2);
+  color: #E51A1A;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.pulsingRedDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #E51A1A;
+  box-shadow: 0 0 8px rgba(229, 26, 26, 0.6);
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.6;
+  }
+}
+
+.sectionHeading {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1.25;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.headingHighlight {
+  color: #E51A1A;
+  position: relative;
+}
+
+.sectionSubtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #64748B;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Nav Controls (Previous / Next Arrows) */
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.navBtn:hover:not(:disabled) {
+  background: #E51A1A;
+  border-color: #E51A1A;
+  color: #FFFFFF;
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(229, 26, 26, 0.25);
+}
+
+.navBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Scroll Track Container */
+.carouselContainer {
+  position: relative;
+  width: 100%;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 8px 2px 24px 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carouselTrack::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 9999px;
+}
+
+.carouselTrack::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+.carouselTrack::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Vertical Video Reel Card (9:16 Aspect Ratio) */
+.videoCard {
+  flex: 0 0 280px;
+  width: 280px;
+  height: 490px;
+  border-radius: 20px;
+  background: #0F172A;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(226, 232, 240, 0.8);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.videoCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(229, 26, 26, 0.25), 0 0 0 1.5px rgba(229, 26, 26, 0.4);
+}
+
+/* Video Element */
+.videoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #0F172A;
+}
+
+/* Top Dark Gradient & Overlays */
+.topOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 4;
+}
+
+.audioToggleBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+.audioToggleBtn:hover {
+  background: rgba(229, 26, 26, 0.85);
+  border-color: #E51A1A;
+  transform: scale(1.08);
+}
+
+/* Center Play/Pause Floating Icon */
+.centerPlayOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.25s ease;
+}
+
+.playCircle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.videoCard:hover .playCircle {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.playingIndicator {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(229, 26, 26, 0.9);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.videoCard:hover .playingIndicator {
+  opacity: 1;
+}
+
+/* Bottom Content Container */
+.bottomOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 18px 20px 18px;
+  background: linear-gradient(0deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.72) 65%, rgba(15, 23, 42, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 4;
+}
+
+.videoCategory {
+  font-size: 11px;
+  font-weight: 500;
+  color: #F87171;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.videoTitle {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.videoDesc {
+  font-size: 12px;
+  font-weight: 400;
+  color: #CBD5E1;
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Bottom Progress Bar during Hover playback */
+.progressBarTrack {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 5;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: #E51A1A;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .section {
+    padding: 48px 0 56px 0;
+  }
+  .videoCard {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 420px;
+    border-radius: 16px;
+  }
+  .videoTitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 36px 0 44px 0;
+  }
+  .headerWrapper {
+    margin-bottom: 20px;
+  }
+  .videoCard {
+    flex: 0 0 210px;
+    width: 210px;
+    height: 370px;
+    border-radius: 14px;
+  }
+  .navControls {
+    display: none;
+  }
+  .videoTitle {
+    font-size: 13.5px;
+  }
+  .videoDesc {
+    font-size: 11px;
+  }
+}

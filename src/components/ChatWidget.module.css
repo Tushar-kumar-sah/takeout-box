@@ -1,0 +1,784 @@
+/* ==========================================================================
+   Bitey AI Chatbot - The Takeout Box
+   Curved Red Device Frame + 7 Options + Large Floating Launcher
+   ========================================================================== */
+
+/* --- Floating Chat Launcher --- */
+.chatLauncherWrapper {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+/* "Ask Bitey Anything!" Speech Bubble Callout */
+.askBiteyBubble {
+  background: linear-gradient(135deg, #e11d24 0%, #c81016 100%);
+  color: #ffffff;
+  padding: 8px 14px 8px 12px;
+  border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 8px 20px rgba(225, 29, 36, 0.38), 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: floatCallout 3.5s ease-in-out infinite;
+  user-select: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.askBiteyBubble:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 26px rgba(225, 29, 36, 0.5);
+}
+
+.askBiteyText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.askBiteyTitle {
+  font-size: 11px;
+  font-weight: 500;
+  color: #fed7aa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.askBiteySubtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.askBiteyArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #ffffff;
+}
+
+@keyframes floatCallout {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Enlarged Floating Launcher Button (Shows Full Image of Bitey) */
+.launcherButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  min-width: 84px;
+  min-height: 84px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #ffffff;
+  border: 3.5px solid #e11d24;
+  box-shadow: 0 10px 28px rgba(225, 29, 36, 0.4), 0 4px 10px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  padding: 2px;
+  overflow: hidden;
+  animation: launcherRingPulse 3s infinite;
+}
+
+@keyframes launcherRingPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(225, 29, 36, 0.55), 0 10px 28px rgba(225, 29, 36, 0.35);
+  }
+  65% {
+    box-shadow: 0 0 0 12px rgba(225, 29, 36, 0), 0 10px 28px rgba(225, 29, 36, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(225, 29, 36, 0), 0 10px 28px rgba(225, 29, 36, 0.35);
+  }
+}
+
+.launcherButton:hover {
+  transform: scale(1.08);
+  border-color: #ef4444;
+  box-shadow: 0 14px 34px rgba(225, 29, 36, 0.5);
+}
+
+.launcherButton:active {
+  transform: scale(0.95);
+}
+
+.launcherAvatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.launcherButton:hover .launcherAvatarImg {
+  transform: scale(1.08);
+}
+
+.onlineBadge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #22c55e;
+  border: 2.5px solid #ffffff;
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Chat Dialog Window (Curved Red Device Frame)
+   ========================================================================== */
+.chatWindow {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  width: 410px;
+  max-width: calc(100vw - 28px);
+  height: 680px;
+  max-height: calc(100vh - 116px);
+  background: #f8fafc;
+  border-radius: 26px;
+  border: 3.5px solid #e11d24;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(225, 29, 36, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+  overflow: hidden;
+  animation: slideInDevice 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  font-family: inherit;
+}
+
+@keyframes slideInDevice {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Top Device Header (Red Glossy Finish) */
+.chatHeader {
+  background: linear-gradient(180deg, #ed1c24 0%, #d8151d 100%);
+  color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  user-select: none;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* White Pill containing The Takeout Box Logo */
+.brandLogoPill {
+  background: #ffffff;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  height: 34px;
+}
+
+.brandLogoImg {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.2px;
+}
+
+.headerSubtitle {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.iconButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   Messages Canvas Area
+   ========================================================================== */
+.messagesContainer {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #f8fafc;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.messagesContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.messagesContainer::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* Message Rows */
+.messageRow {
+  display: flex;
+  gap: 10px;
+  max-width: 92%;
+  box-sizing: border-box;
+}
+
+.userRow {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.assistantRow {
+  align-self: flex-start;
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.msgAvatarBox {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  overflow: hidden;
+  margin-top: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+}
+
+.msgAvatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bubble {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.45;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+.assistantBubble {
+  background: #ffffff;
+  color: #1e293b;
+  border-top-left-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  width: 100%;
+}
+
+.userBubble {
+  background: #1e293b;
+  color: #ffffff;
+  border-top-right-radius: 4px;
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.15);
+}
+
+.assistantGreetingTitle {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.assistantGreetingSubtitle {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.assistantGreetingPrompt {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e11d24;
+}
+
+/* ==========================================================================
+   The 7 Interactive Action / Option Cards (Direct from Design)
+   ========================================================================== */
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.optionCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.optionCard:hover {
+  background: #fffafa;
+  border-color: #fca5a5;
+  transform: translateX(3px);
+  box-shadow: 0 3px 10px rgba(225, 29, 36, 0.09);
+}
+
+.optionCard:active {
+  transform: translateX(1px) scale(0.99);
+}
+
+.optionLeft {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.optionIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #e11d24;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.optionCard:hover .optionIconWrapper {
+  transform: scale(1.1);
+  background: #fee2e2;
+}
+
+.optionLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: -0.1px;
+}
+
+.optionChevron {
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.optionCard:hover .optionChevron {
+  color: #e11d24;
+  transform: translateX(2px);
+}
+
+/* Quick Options Bar (Available after conversation starts) */
+.restartOptionsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #e11d24;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s ease;
+}
+
+.restartOptionsBtn:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+/* ==========================================================================
+   Product Cards & Suggestions inside Chat
+   ========================================================================== */
+.productsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.productCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.productCard:hover {
+  border-color: #e11d24;
+  box-shadow: 0 3px 10px rgba(225, 29, 36, 0.12);
+  transform: translateY(-1px);
+}
+
+.productThumb {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f8fafc;
+  flex-shrink: 0;
+}
+
+.productDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.productName {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.productPrice {
+  font-weight: 700;
+  color: #e11d24;
+}
+
+.productActionIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.productCard:hover .productActionIcon {
+  color: #e11d24;
+}
+
+/* Quick Category Pills */
+.categoryPillsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.categoryPillBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.categoryPillBtn:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #e11d24;
+}
+
+/* Action CTA Buttons inside Chat */
+.actionBtnBox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.actionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 9px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.25);
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: none;
+}
+
+.actionBtn:hover {
+  background: #20ba5a;
+  transform: translateY(-1px);
+}
+
+.redActionBtn {
+  background: #e11d24;
+  box-shadow: 0 3px 10px rgba(225, 29, 36, 0.25);
+}
+
+.redActionBtn:hover {
+  background: #c81016;
+}
+
+.darkActionBtn {
+  background: #0f172a;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.2);
+}
+
+.darkActionBtn:hover {
+  background: #1e293b;
+}
+
+/* ==========================================================================
+   Typing Indicator
+   ========================================================================== */
+.typingRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-radius: 14px;
+  border-top-left-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+}
+
+.typingDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e11d24;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typingDot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typingDot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.typingDot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.35;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Chat Input Area (Bottom Bar with Rounded Send Button)
+   ========================================================================== */
+.chatFooter {
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  padding: 10px 14px 12px;
+  flex-shrink: 0;
+}
+
+.inputForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 4px 6px 4px 16px;
+  transition: all 0.2s ease;
+}
+
+.inputForm:focus-within {
+  border-color: #e11d24;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(225, 29, 36, 0.08);
+}
+
+.chatInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13.5px;
+  color: #0f172a;
+  font-family: inherit;
+  padding: 7px 0;
+}
+
+.chatInput::placeholder {
+  color: #9ca3af;
+}
+
+.sendBtn {
+  background: #e11d24;
+  border: none;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(225, 29, 36, 0.3);
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: #c81016;
+  transform: scale(1.05);
+}
+
+.sendBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 480px) {
+  .chatLauncherWrapper {
+    bottom: 74px;
+    right: 14px;
+  }
+
+  .launcherButton {
+    width: 68px;
+    height: 68px;
+    min-width: 68px;
+    min-height: 68px;
+  }
+
+  .askBiteyBubble {
+    display: none;
+  }
+
+  .chatWindow {
+    bottom: 74px;
+    right: 12px;
+    width: calc(100vw - 24px);
+    height: calc(100vh - 90px);
+    border-radius: 20px;
+  }
+}

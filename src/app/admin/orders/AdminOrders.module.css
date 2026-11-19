@@ -1,0 +1,335 @@
+/* Admin Orders & UPS Shipping Management Styles */
+
+.adminPage {
+  min-height: 100vh;
+  background: #F8FAFC;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  padding-bottom: 60px;
+}
+
+.adminHeader {
+  background: #0F172A;
+  color: #FFFFFF;
+  padding: 20px 0;
+  border-bottom: 1px solid #1E293B;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleArea h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titleArea p {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: #94A3B8;
+}
+
+.adminBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1E293B;
+  color: #38BDF8;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 20px;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-bottom: 24px;
+}
+
+.filterTabs {
+  display: flex;
+  gap: 8px;
+}
+
+.filterBtn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filterBtn:hover {
+  background: #F1F5F9;
+  color: #0F172A;
+}
+
+.filterBtnActive {
+  background: #0F172A;
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.ordersGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* Orders List */
+.ordersListCard {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.ordersListHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orderItemRow {
+  padding: 16px 20px;
+  border-bottom: 1px solid #F1F5F9;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.orderItemRow:hover {
+  background: #F8FAFC;
+}
+
+.orderItemRowActive {
+  background: #EFF6FF !important;
+  border-left: 4px solid #2563EB;
+}
+
+.orderItemTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.orderNumber {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.orderDate {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.orderCustomer {
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+.orderMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.carrierPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FEF3C7;
+  color: #92400E;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+/* Detail View Card */
+.detailCard {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.detailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #E2E8F0;
+  margin-bottom: 20px;
+}
+
+.detailTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.detailSubtitle {
+  font-size: 12.5px;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.sectionBlock {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.sectionBlockTitle {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #475569;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.infoItemLabel {
+  color: #64748B;
+  font-size: 12px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.infoItemValue {
+  font-weight: 600;
+  color: #0F172A;
+}
+
+/* Dedicated UPS Shipping Section (Requirement 24) */
+.shippingDedicatedSection {
+  background: #FFFBEB;
+  border: 1.5px solid #FCD34D;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.shippingTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.shippingTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #92400E;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upsLogoTag {
+  background: #351C15;
+  color: #FFB500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* Rate Details Debug Box (Requirement 25) */
+.rateDetailsBox {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 14px;
+}
+
+.rateDetailsTitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rateDebugGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  font-size: 12px;
+}
+
+.emptyState {
+  padding: 40px;
+  text-align: center;
+  color: #64748B;
+  font-size: 14px;
+}
+
+@media (max-width: 992px) {
+  .ordersGrid {
+    grid-template-columns: 1fr;
+  }
+}

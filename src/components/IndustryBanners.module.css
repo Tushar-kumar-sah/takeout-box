@@ -1,0 +1,201 @@
+/* Industry / Sector Banners Section - Below Shop By Category */
+
+.industrySection {
+  padding: 10px 0 44px 0;
+  background: #FFFFFF;
+}
+
+.bannerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Individual Banner Card */
+.bannerCard {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 250px;
+  display: flex;
+  background-color: #FAF4EB;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+  cursor: pointer;
+}
+
+.bannerCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(124, 45, 18, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-color: #E2D9CE;
+}
+
+/* Background image placed on the right side */
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 62%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.bannerImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.bannerCard:hover .bannerImg {
+  transform: scale(1.04);
+}
+
+/* Seamless blend gradient from the left cream background over the photo */
+.gradientFade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 48%;
+  background: linear-gradient(
+    to right,
+    #FAF4EB 0%,
+    rgba(250, 244, 235, 0.96) 24%,
+    rgba(250, 244, 235, 0.65) 58%,
+    rgba(250, 244, 235, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Content Container on the left */
+.contentBox {
+  position: relative;
+  z-index: 3;
+  width: 58%;
+  padding: 26px 20px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Title matching the rich warm brown typography in user's image */
+.bannerTitle {
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: 27px;
+  font-weight: 800;
+  color: #7C2D12; /* Rich warm dark terracotta brown */
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Subtitle matching warm golden-brown in user's image */
+.bannerSubtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: #9A3412; /* Warm amber terracotta */
+  line-height: 1.45;
+  margin: 0;
+  max-width: 290px;
+}
+
+/* White Pill Button at the bottom */
+.btnWrapper {
+  margin-top: 18px;
+}
+
+.pillButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  color: #0F172A;
+  font-family: var(--font-heading, 'Inter', sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 9999px;
+  border: 1.5px solid #CBD5E1;
+  box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.bannerCard:hover .pillButton {
+  background: #7C2D12;
+  color: #FFFFFF;
+  border-color: #7C2D12;
+  box-shadow: 0 4px 12px rgba(124, 45, 18, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .bannerGrid {
+    gap: 16px;
+  }
+  .bannerTitle {
+    font-size: 24px;
+  }
+  .bannerSubtitle {
+    font-size: 13.5px;
+    max-width: 240px;
+  }
+  .contentBox {
+    padding: 22px 18px 20px 22px;
+  }
+}
+
+@media (max-width: 820px) {
+  .bannerGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .bannerCard {
+    min-height: 220px;
+  }
+  .imageWrapper {
+    width: 55%;
+  }
+  .contentBox {
+    width: 65%;
+  }
+}
+
+@media (max-width: 540px) {
+  .bannerCard {
+    min-height: 200px;
+  }
+  .contentBox {
+    width: 70%;
+    padding: 18px 14px 18px 18px;
+  }
+  .bannerTitle {
+    font-size: 21px;
+  }
+  .bannerSubtitle {
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+  .pillButton {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}

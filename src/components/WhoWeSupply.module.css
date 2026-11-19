@@ -1,0 +1,233 @@
+.supplySection {
+  padding: 68px 0;
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.headerArea {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 44px auto;
+}
+
+.tagline {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--brand-red);
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.25;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.headingHighlight {
+  color: var(--brand-red);
+}
+
+.subtitle {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.industriesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.industryCard {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.industryCard:hover {
+  background: #FFFFFF;
+  border-color: #94A3B8;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.iconHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.iconBox {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: #0F172A;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.industryCard:hover .iconBox {
+  background: var(--brand-red);
+  color: #FFFFFF;
+}
+
+.cardName {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.cardTagline {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--brand-red);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.cardDesc {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.popularLabel {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #64748B;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.itemTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.itemTag {
+  font-size: 11.5px;
+  font-weight: 400;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #334155;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+}
+
+.industryCard:hover .itemTag {
+  border-color: #CBD5E1;
+  background: #FFFFFF;
+}
+
+/* Regulatory & Technical Compliance Standards Bar */
+.sealsBanner {
+  background: #1E293B;
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid #334155;
+  padding: 26px 32px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.sealItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.sealIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: all var(--transition-fast);
+}
+
+.sealItem:hover .sealIcon {
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.sealTitle {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: #F8FAFC;
+}
+
+.sealSubtitle {
+  font-size: 11px;
+  font-weight: 400;
+  color: #94A3B8;
+  line-height: 1.35;
+}
+
+@media (max-width: 1024px) {
+  .industriesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sealsBanner {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .supplySection {
+    padding: 48px 0;
+  }
+  .heading {
+    font-size: 26px;
+  }
+  .industriesGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .sealsBanner {
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,222 @@
+.carouselWrapper {
+  position: relative;
+  background: #ffffff;
+  padding: 12px 0 16px 0;
+  overflow: hidden;
+}
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  background: #0f172a;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+/* Stable height across all devices — maintains existing desktop height */
+.slidesTrack {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  min-height: 300px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+/* Individual Slide */
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+  overflow: hidden;
+  background: #0f172a;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.slideActive {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* FULL-WIDTH Image — Fills the complete carousel frame without letterboxing or blurred background */
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  display: block;
+  pointer-events: none;
+}
+
+/* Navigation Arrows (inside image area with high contrast) */
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  transition: all var(--transition-fast, 0.2s ease);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.navArrow:hover {
+  background: var(--brand-red, #e5252a);
+  border-color: var(--brand-red, #e5252a);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.prevArrow {
+  left: 16px;
+}
+
+.nextArrow {
+  right: 16px;
+}
+
+/* Compact, unobtrusive indicator dots */
+.dotsWrapper {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  z-index: 10;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 5px 12px;
+  border-radius: var(--radius-full, 9999px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full, 9999px);
+  background: rgba(255, 255, 255, 0.45);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.dotActive {
+  width: 22px;
+  background: var(--brand-red, #e5252a);
+  box-shadow: 0 0 8px rgba(229, 37, 42, 0.6);
+}
+
+/* Compact 4 Trust Pillars */
+.trustBar {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.trustItem {
+  background: var(--bg-slate-50, #f8fafc);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: var(--radius-md, 8px);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all var(--transition-fast, 0.2s ease);
+}
+
+.trustItem:hover {
+  background: #ffffff;
+  border-color: var(--border-hover, #cbd5e1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-1px);
+}
+
+.trustIconBox {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: #fff1f2;
+  color: var(--brand-red, #e5252a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trustTitle {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-main, #0f172a);
+  letter-spacing: 0.01em;
+  margin-bottom: 2px;
+}
+
+.trustSubtitle {
+  font-size: 11px;
+  color: var(--text-muted, #64748b);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+  .slidesTrack {
+    height: 320px;
+    min-height: 290px;
+  }
+  .trustBar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .trustBar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .slidesTrack {
+    height: 310px;
+    min-height: 280px;
+  }
+  .navArrow {
+    width: 36px;
+    height: 36px;
+  }
+  .prevArrow {
+    left: 10px;
+  }
+  .nextArrow {
+    right: 10px;
+  }
+  .dotsWrapper {
+    bottom: 10px;
+    padding: 4px 10px;
+  }
+}

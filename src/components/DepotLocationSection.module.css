@@ -1,0 +1,399 @@
+/* Depot Location & Warehouse Hours Section Styles */
+
+.locationSection {
+  background: #FFFFFF;
+  padding: 64px 0;
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.headerArea {
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* User Requirement: "at top Open with green dot" */
+.statusBadgeTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #15803D;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.greenDotPulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+  animation: pulseGreen 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    transform: scale(0.95);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+    transform: scale(1.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    transform: scale(0.95);
+  }
+}
+
+.sectionHeading {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
+}
+
+.headingHighlight {
+  color: var(--brand-red);
+}
+
+.sectionSub {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: #64748B;
+  max-width: 680px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* 2-Column Grid Layout: Left Location/Hours, Right Map */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* Left Column: Location & Hours */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.infoCard {
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.iconBoxRed {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-red);
+  flex-shrink: 0;
+}
+
+.iconBoxSlate {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #334155;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0;
+}
+
+.cardSub {
+  font-size: 12px;
+  font-weight: 400;
+  color: #64748B;
+  margin: 2px 0 0 0;
+}
+
+.depotName {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: #0F172A;
+  margin-bottom: 4px;
+}
+
+.addressText {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.contactRow a {
+  color: #0F172A;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.contactRow a:hover {
+  color: var(--brand-red);
+}
+
+.actionsRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.directionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--brand-red);
+  color: #FFFFFF;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.directionBtn:hover {
+  background: var(--brand-red-hover);
+  transform: translateY(-1px);
+}
+
+.callBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #F8FAFC;
+  color: #1E293B;
+  border: 1px solid #CBD5E1;
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.callBtn:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+}
+
+
+/* User Requirement 2: Business Hours Separately like Monday, Tuesday, ...etc */
+.hoursTable {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hoursRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #F8FAFC;
+  border: 1px solid #F1F5F9;
+  font-size: 13px;
+  font-weight: 400;
+  transition: background 0.15s ease;
+}
+
+.hoursRowToday {
+  background: #FEF2F2;
+  border-color: #FECACA;
+  font-weight: 600;
+}
+
+.dayWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dayLabel {
+  font-weight: 500;
+  color: #1E293B;
+}
+
+.todayPill {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: var(--brand-red);
+  color: #FFFFFF;
+  padding: 1.5px 6px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.02em;
+}
+
+.timeLabel {
+  color: #475569;
+  font-weight: 400;
+}
+
+.timeLabelClosed {
+  color: #DC2626;
+  font-weight: 500;
+}
+
+/* Right Column: Google Maps in Satellite Mode */
+.mapCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.mapCard {
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 480px;
+  position: relative;
+}
+
+.mapToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #0F172A;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
+.mapModeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: #38BDF8;
+}
+
+.openInMapsLink {
+  color: #94A3B8;
+  font-size: 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s ease;
+}
+
+.openInMapsLink:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.mapFrameWrapper {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  min-height: 430px;
+}
+
+.mapIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .mapCard {
+    min-height: 420px;
+  }
+
+  .mapFrameWrapper {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 640px) {
+  .locationSection {
+    padding: 40px 0;
+  }
+
+  .sectionHeading {
+    font-size: 22px;
+  }
+
+  .infoCard {
+    padding: 18px 14px;
+  }
+
+  .hoursRow {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .mapCard {
+    min-height: 340px;
+  }
+
+  .mapFrameWrapper {
+    min-height: 300px;
+  }
+}

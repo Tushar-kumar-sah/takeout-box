@@ -1,0 +1,38 @@
+# ==============================================================================
+# The Takeout Box - LiteSpeed / Apache Web Server Configuration
+# Prevents directory listings and routes all requests to Next.js static exports
+# ==============================================================================
+
+# 1. Disable directory browsing (Stops "Index of /cart/" and directory listings permanently)
+Options -Indexes
+
+# 2. Set default directory index
+DirectoryIndex index.html
+
+# 3. Enable URL rewriting
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect HTTP to HTTPS (standard production best practice)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Deliver existing real files or directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Route directory index.html if requested path matches a static exported page folder
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*)/?$ $1/index.html [L]
+
+  # Fallback for dynamic client routing
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# 4. UTF-8 charset
+AddDefaultCharset UTF-8

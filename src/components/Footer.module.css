@@ -1,0 +1,233 @@
+.footer {
+  background: var(--brand-black);
+  color: #CBD5E1;
+  padding: 64px 0 32px 0;
+  border-top: 4px solid var(--brand-red);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandHeaderGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 14px;
+}
+
+.footerLogoBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  padding: 8px 18px;
+  border-radius: var(--radius-md, 10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  margin-bottom: 10px;
+  width: fit-content;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  text-decoration: none;
+}
+
+.footerLogoBadge:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+.footerLogoImage {
+  height: 64px;
+  width: auto;
+  max-width: 190px;
+  object-fit: contain;
+  display: block;
+}
+
+.tagline {
+  font-size: 13px;
+  font-weight: 600;
+  color: #F87171;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin: 0;
+}
+
+.brandBio {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #94A3B8;
+  margin-bottom: 20px;
+  max-width: 360px;
+}
+
+.certBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.certBadge {
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #E2E8F0;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.02em;
+}
+
+.socialGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.socialIconBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.socialIconBtn:hover {
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+  color: #FFFFFF;
+}
+
+.colTitle {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.colTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background: var(--brand-red);
+}
+
+.linksList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.linkItem button, .linkItem a {
+  font-size: 14px;
+  color: #94A3B8;
+  transition: color var(--transition-fast);
+  text-align: left;
+}
+
+.linkItem button:hover, .linkItem a:hover {
+  color: var(--brand-red);
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: #CBD5E1;
+}
+
+.contactIcon {
+  color: var(--brand-red);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748B;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.bottomLink {
+  color: #94A3B8;
+  transition: color var(--transition-fast);
+}
+
+.bottomLink:hover {
+  color: #FFFFFF;
+}
+
+.agencyLink {
+  color: #F87171;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.agencyLink:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footerLogoImage {
+    height: 65px;
+    max-width: 195px;
+  }
+  .bottomBar {
+    flex-direction: column;
+    text-align: center;
+  }
+}
